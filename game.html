@@ -1,134 +1,150 @@
 <!DOCTYPE html>
 <html lang="en-us">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unity WebGL Player | New Unity Project (1)</title>
+    <!-- <title>Unity WebGL Player | New Unity Project (1)</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="TemplateData/style.css">
+   
     <script src="TemplateData/UnityProgress.js"></script>
-    <script src="Build/UnityLoader.js"></script>
-    <script>
-      var unityInstance = UnityLoader.instantiate("unityContainer", "Build/Web.json", {onProgress: UnityProgress});
-    </script>
+    <script src="Build/UnityLoader.js"></script> -->
+    <link rel="stylesheet" href="TemplateData/style.css">
+    <script src="./js/jquery-2.1.4.min.js"></script>
+    <script src="./js/jquery.flip.min.js"></script>
+    <script src="./js/game.js"></script>
 </head>
+
 <body>
-<div class="page game-page">
-    <div class="page-wrapper">
-        <figure class="wrapper-figure"></figure>
-        <div class="page-content">
-            <div class="page-header">
-                <div class="header-container flex-between">
-                    <div class="header-col">
-                        <p class="p">Time</p>
-                        <p class="p-large">59</p>
-                        <div class="countdown"></div>
-                    </div>
-                    <div class="header-col">
-                        <p class="title-page bold primary-color">Pairs</p>
-                        <div class="pair-block flex-center">
-                            <h3 class="sub-heading primary-color">0</h3>
+    <div class="page game-page">
+        <div class="page-wrapper">
+            <figure class="wrapper-figure"></figure>
+            <div class="page-content">
+                <div class="page-header">
+                    <div class="header-container flex-between">
+                        <div class="header-col">
+                            <p class="p">Time</p>
+                            <p class="p-large">59</p>
+                            <div class="countdown"></div>
                         </div>
-                    </div>
-                    <div class="header-col">
-                        <!--                            <button class="btn-transparent btn-pause"></button>-->
-                        <button class="btn-transparent btn-start"></button>
+                        <div class="header-col">
+                            <p class="title-page bold primary-color">Pairs</p>
+                            <div class="pair-block flex-center">
+                                <h3 class="sub-heading primary-color">0</h3>
+                            </div>
+                        </div>
+                        <div class="header-col">
+                            <!--                            <button class="btn-transparent btn-pause"></button>-->
+                            <button class="btn-transparent btn-start"></button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="page-inner">
-                <!--                    <figure class="inner-figure"></figure>-->
-                <div class="flex-center list-image">
-                    <div class="item-image">
-                        <div class="back">
-                            <img src="TemplateData/img/back1.png" />
+                <div class="page-inner">
+                    <!--                    <figure class="inner-figure"></figure>-->
+                    <div class="flex-center list-image">
+                        <div class="item-image card" id="card1">
+                            <div class="back">
+                                <img src="TemplateData/img/back1.png" />
+                            </div>
+                            <div class="front">
+                                <img id="front1" src="TemplateData/img/blue1.png" />
+                            </div>
                         </div>
-                        <div class="front">
+                        <div class="item-image card" id="card2">
+                            <div class="back">
+                                <img src="TemplateData/img/back2.png" />
+                            </div>
+                            <div class="front">
+                                <img id="front2"  src="TemplateData/img/blue1.png" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="item-image">
-                        <div class="back">
-                            <img src="TemplateData/img/back2.png" />
+                        <div class="item-image card" id="card3">
+                            <div class="back">
+                                <img src="TemplateData/img/back3.png" />
+                            </div>
+                            <div class="front">
+                                <img id="front3"  src="TemplateData/img/blue1.png" />
+                            </div>
                         </div>
-                        <div class="front">
+                        <div class="item-image card" id="card4">
+                            <div class="back">
+                                <img src="TemplateData/img/back4.png" />
+                            </div>
+                            <div class="front">
+                                <img id="front4"  src="TemplateData/img/blue1.png" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="item-image">
-                        <div class="back">
-                            <img src="TemplateData/img/back3.png" />
+                        <div class="item-image card" id="card5">
+                            <div class="back">
+                                <img src="TemplateData/img/back5.png" />
+                            </div>
+                            <div class="front">
+                                <img id="front5"  src="TemplateData/img/blue1.png" />
+                            </div>
                         </div>
-                        <div class="front">
+                        <div class="item-image card" id="card6">
+                            <div class="back">
+                                <img src="TemplateData/img/back6.png" />
+                            </div>
+                            <div class="front">
+                                <img id="front6"  src="TemplateData/img/blue1.png" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="item-image">
-                        <div class="back">
-                            <img src="TemplateData/img/back4.png" />
+                        <div class="item-image card" id="card7">
+                            <div class="back">
+                                <img src="TemplateData/img/back7.png" />
+                            </div>
+                            <div class="front">
+                                <img id="front7"  src="TemplateData/img/blue1.png" />
+                            </div>
                         </div>
-                        <div class="front">
+                        <div class="item-image card" id="card8">
+                            <div class="back">
+                                <img src="TemplateData/img/back8.png" />
+                            </div>
+                            <div class="front">
+                                <img id="front8"  src="TemplateData/img/blue1.png" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="item-image">
-                        <div class="back">
-                            <img src="TemplateData/img/back5.png" />
+                        <div class="item-image card" id="card9">
+                            <div class="back">
+                                <img src="TemplateData/img/back9.png" />
+                            </div>
+                            <div class="front">
+                                <img id="front9"  src="TemplateData/img/blue1.png" />
+                            </div>
                         </div>
-                        <div class="front">
+                        <div class="item-image card" id="card10">
+                            <div class="back">
+                                <img src="TemplateData/img/back10.png" />
+                            </div>
+                            <div class="front">
+                                <img id="front10"  src="TemplateData/img/blue1.png" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="item-image">
-                        <div class="back">
-                            <img src="TemplateData/img/back6.png" />
+                        <div class="item-image card" id="card11">
+                            <div class="back">
+                                <img src="TemplateData/img/back11.png" />
+                            </div>
+                            <div class="front">
+                                <img id="front11"  src="TemplateData/img/blue1.png" />
+                            </div>
                         </div>
-                        <div class="front">
-                        </div>
-                    </div>
-                    <div class="item-image">
-                        <div class="back">
-                            <img src="TemplateData/img/back7.png" />
-                        </div>
-                        <div class="front">
-                        </div>
-                    </div>
-                    <div class="item-image">
-                        <div class="back">
-                            <img src="TemplateData/img/back8.png" />
-                        </div>
-                        <div class="front">
-                        </div>
-                    </div>
-                    <div class="item-image">
-                        <div class="back">
-                            <img src="TemplateData/img/back9.png" />
-                        </div>
-                        <div class="front">
-                        </div>
-                    </div>
-                    <div class="item-image">
-                        <div class="back">
-                            <img src="TemplateData/img/back10.png" />
-                        </div>
-                        <div class="front">
-                        </div>
-                    </div>
-                    <div class="item-image">
-                        <div class="back">
-                            <img src="TemplateData/img/back11.png" />
-                        </div>
-                        <div class="front">
-                        </div>
-                    </div>
-                    <div class="item-image">
-                        <div class="back">
-                            <img src="TemplateData/img/back12.png" />
-                        </div>
-                        <div class="front">
+                        <div class="item-image card" id="card12">
+                            <div class="back">
+                                <img src="TemplateData/img/back12.png" />
+                            </div>
+                            <div class="front">
+                                <img id="front12"  src="./TemplateData/img/blue1.png" />
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </body>
+
 </html>
