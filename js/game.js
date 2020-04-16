@@ -30,7 +30,7 @@ var group = [
     ['./TemplateData/img/red1.png', './TemplateData/img/red2.png'],
     ['./TemplateData/img/red1.png', './TemplateData/img/red3.png'],
 ];
-var listObjShowup = [], totalTime = 60, remainingTime, pickedCards = [], successCount = 0;
+var listObjShowup = [], totalTime = 60, remainingTime, pickedCards = [], successCount = 0, isPause = false;
 var shuffle = function (a) {
     for (let i = a.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -40,10 +40,20 @@ var shuffle = function (a) {
 }
 var startGame = function () {
     $('.card').addClass('flip-active');
+
+
     setTimeout(() => {
         closeAllCard();
         countDownTime();
-    }, 2000);
+
+        $('#titleGame').text('Pairs');
+
+        $('#preCountDown').css('display', 'none');
+
+        $('#play-pause-section').css('display', 'block')
+        $('#successCount').css('display', 'block');
+        $('#countTimer').css('display', 'block');
+    }, 5000);
 }
 var closeAllCard = function () {
     $('.card').removeClass('flip-active');
@@ -51,9 +61,12 @@ var closeAllCard = function () {
 var countDownTime = function () {
     remainingTime = totalTime;
     var interVal = setInterval(function () {
+        if(isPause){
+            return;
+        }
         remainingTime--;
         var percentTime = remainingTime / totalTime * 100 + '%';
-        $('#percentTime').css('width',percentTime)
+        $('#percentTime').css('width', percentTime)
         $('#time').html(remainingTime)
         if (remainingTime <= 0) {
             clearInterval(interVal);
@@ -99,6 +112,18 @@ $(function () {
                 pickedCards = [];
             }, 1000);
         }
-    })
+    });
+
+
+    $('#pause').click(function () {
+        $(this).css('display', 'none');
+        $('#play').css('display', 'block');
+        isPause = true;
+    });
+    $('#play').click(function () {
+        $(this).css('display', 'none');
+        $('#pause').css('display', 'block');
+        isPause = false;
+    });
 });
 

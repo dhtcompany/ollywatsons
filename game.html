@@ -26,24 +26,30 @@
                 <div class="page-header">
                     <div class="header-container flex-between">
                         <div class="header-col">
-                            <p class="p">Time</p>
-                            <p class="p-large" id="time">59</p>
-                            <div class="countdown" id="percentTime"></div>
+                            <div id="countTimer" style="display: none;">
+                                <p class="p">Time</p>
+                                <p class="p-large" id="time">59</p>
+                                <div class="countdown" id="percentTime"></div>
+                            </div>
+
                         </div>
                         <div class="header-col">
-                            <p class="title-page bold primary-color">Pairs</p>
+                            <p class="title-page bold primary-color" id="titleGame">Get READY</p>
                             <div class="pair-block flex-center">
-                                <div class="wrapper-clock">
+                                <div class="wrapper-clock" id="preCountDown">
                                     <div class="pie spinner"></div>
                                     <div class="pie filler"></div>
                                     <div class="mask"></div>
                                 </div>
-<!--                                <h3 class="sub-heading primary-color" id="successCount">0</h3>-->
+                                <h3 class="sub-heading primary-color" style="display: none;" id="successCount">0</h3>
                             </div>
                         </div>
                         <div class="header-col">
-                            <!--                            <button class="btn-transparent btn-pause"></button>-->
-                            <button class="btn-transparent btn-start"></button>
+                            <div id="play-pause-section" style="display: none;">
+                                <button class="btn-transparent btn-pause" id="pause" ></button>
+                                <button class="btn-transparent btn-start" id="play" style="display: none;"></button>
+                            </div>
+
                         </div>
                     </div>
                 </div>
