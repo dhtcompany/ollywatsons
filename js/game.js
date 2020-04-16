@@ -32,10 +32,15 @@ var group = [
 ];
 var pauseModeImg = [
     './TemplateData/img/Blue.png',
+    './TemplateData/img/blue0.png',
     './TemplateData/img/Cyan.png',
+    './TemplateData/img/cyan0.png',
     './TemplateData/img/Green.png',
+    './TemplateData/img/green0.png',
     './TemplateData/img/Pink.png',
-    './TemplateData/img/Red.png'
+    './TemplateData/img/pink0.png',
+    './TemplateData/img/Red.png',
+    './TemplateData/img/red0.png'
 ]
 function preloadImage(src) {
     var image = new Image();
@@ -53,7 +58,7 @@ listObj.forEach(function (e) {
 
 
 
-var listObjShowup = [], totalTime = 60, remainingTime, pickedCards = [], successCount = 0, isPause = false;
+var listObjShowup = [], totalTime = 60, remainingTime, pickedCards = [], successCount = 0, isPause = false, pauseClickTime = 0;
 var shuffle = function (a) {
     for (let i = a.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -128,6 +133,11 @@ var resume = function () {
     isPause = false;
     $('#pause-mode').css('display', 'none');
 }
+var getPauseImage = function () {
+    let image = pauseModeImg[pauseClickTime % pauseModeImg.length];
+   
+    return image;
+}
 $(function () {
     init();
     $('.card').click(function () {
@@ -156,13 +166,18 @@ $(function () {
         $('#play').css('display', 'inline-block');
         isPause = true;
         $('#pause-mode').css('display', 'block');
-        $("#pause-mode-img").attr('src', pauseModeImg[Math.floor(Math.random() * pauseModeImg.length)]);
+      
+        $("#pause-mode-img").attr('src', getPauseImage());
     });
     $('#play').click(function () {
         resume()
     });
-    $('#pause-mode').click(function () {
+    $('#resume_btn').click(function () {
         resume()
+    });
+    $('#pause-mode-img').click(function () {
+        pauseClickTime++;
+        $("#pause-mode-img").attr('src', getPauseImage());
     })
 });
 
