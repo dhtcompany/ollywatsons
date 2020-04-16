@@ -30,7 +30,7 @@ var group = [
     ['./TemplateData/img/red1.png', './TemplateData/img/red2.png'],
     ['./TemplateData/img/red1.png', './TemplateData/img/red3.png'],
 ];
-var listObjShowup = [], time = 10, pickedCards = [], successCount = 0;
+var listObjShowup = [], totalTime = 60, remainingTime, pickedCards = [], successCount = 0;
 var shuffle = function (a) {
     for (let i = a.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -49,10 +49,13 @@ var closeAllCard = function () {
     $('.card').removeClass('flip-active');
 }
 var countDownTime = function () {
+    remainingTime = totalTime;
     var interVal = setInterval(function () {
-        time--;
-        $('#time').html(time)
-        if (time <= 0) {
+        remainingTime--;
+        var percentTime = remainingTime / totalTime * 100 + '%';
+        $('#percentTime').css('width',percentTime)
+        $('#time').html(remainingTime)
+        if (remainingTime <= 0) {
             clearInterval(interVal);
         }
     }, 1000)
