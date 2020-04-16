@@ -92,6 +92,7 @@ var countDownTime = function () {
         $('#percentTime').css('width', percentTime)
         $('#time').html(remainingTime)
         if (remainingTime <= 0) {
+            window.location.pathname = './submit.html'
             clearInterval(interVal);
         }
     }, 1000)
