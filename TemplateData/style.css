@@ -61,6 +61,11 @@ button:focus {
     color: #bc1f89 !important;
 }
 
+.flex-justify-center {
+    display: flex;
+    justify-content: center;
+}
+
 .flex-center {
     display: flex;
     align-items: center;
@@ -312,6 +317,7 @@ figure, body, p, h1, h2, h3, h4, h5, h6, * {
 
 .how-content {
     text-align: center;
+    position: relative;
 }
 
 .how-inner {
@@ -459,10 +465,14 @@ figure, body, p, h1, h2, h3, h4, h5, h6, * {
     width: 100%;
     height: 100%;
     position: absolute;
-    top: 0;
+    top: 10px;
     left: 0;
     background: #9196a8;
     border: 0;
+}
+
+.text-line-one {
+    white-space: nowrap;
 }
 
 .page-submit .page-container {
@@ -555,4 +565,90 @@ a {
 
 .p-small {
     font-size: 10px;
+}
+
+.header-again {
+    position: relative;
+    overflow: hidden;
+}
+
+.header-again::after {
+    content: '';
+    position: absolute;
+    width: 300vw;
+    height: 300vw;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #BC1F89;
+    border-radius: 50%;
+}
+
+.page-again .how-content::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100px;
+    top: 0;
+    left: 0;
+    background: #BC1F89;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+
+}
+
+.how-content img {
+    position: relative;
+    z-index: 4;
+}
+
+.header-detail {
+    position: relative;
+    z-index: 2;
+}
+
+.heading {
+    font-size: 40px;
+    font-weight: 500;
+}
+
+.large-heading {
+    font-size: 110px;
+    font-weight: 500;
+    line-height: 0.75;
+}
+
+.header-detail {
+    padding-bottom: 30px;
+    color: #fff;
+}
+
+.content-again {
+    margin-top: -15px;
+}
+
+.content-again img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.col-two {
+    flex: 1;
+    padding: 5px;
+}
+
+.col-left {
+    border-right: 1px solid #F49AC1;
+    position: relative;
+}
+
+.col-left::before {
+    content: 'OR';
+    position: absolute;
+    top: 50%;
+    right: -13px;
+    color: #F49AC1;
+    transform: translateY(-50%);
+    background: #fcf6fc;
 }
