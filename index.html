@@ -1,11 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Unity WebGL Player | New Unity Project (1)</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="TemplateData/style.css">
+    <script src="./js/jquery-2.1.4.min.js"></script>
+    <script src="./js/game.js"></script>
 </head>
+
 <body>
-    
+    <div class="page page-home">
+        <div class="page-container">
+            <div class="flex-center home-content">
+                <img class="mb-50" src="TemplateData/img/olly-flip.png" />
+                <button class="home-btn primary-color mb-15" id="playGameBtn">Start!</button>
+                <button class="home-btn mb-50" id="gotoHow">How to Play</button>
+                <img src="TemplateData/img/olly-logo.png" />
+            </div>
+        </div>
+    </div>
 </body>
+<script> $(function () {
+
+        $("#playGameBtn").click(function () {
+            window.location.pathname = 'game.html'
+        });
+        $("#gotoHow").click(function () {
+            window.location.pathname = 'howToPlay.html'
+        });
+    })</script>
+
 </html>

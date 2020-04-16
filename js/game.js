@@ -61,7 +61,7 @@ var closeAllCard = function () {
 var countDownTime = function () {
     remainingTime = totalTime;
     var interVal = setInterval(function () {
-        if(isPause){
+        if (isPause) {
             return;
         }
         remainingTime--;
@@ -117,12 +117,12 @@ $(function () {
 
     $('#pause').click(function () {
         $(this).css('display', 'none');
-        $('#play').css('display', 'block');
+        $('#play').css('display', 'inline-block');
         isPause = true;
     });
     $('#play').click(function () {
         $(this).css('display', 'none');
-        $('#pause').css('display', 'block');
+        $('#pause').css('display', 'inline-block');
         isPause = false;
     });
 });
