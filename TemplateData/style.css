@@ -452,6 +452,7 @@ figure, body, p, h1, h2, h3, h4, h5, h6, * {
   opacity: 1;
   z-index: 300;
   animation: opa 5s steps(1, end) infinite;
+  border-radius: 100% 0 0 100% / 50% 0 0 50%;
 }
 
 @keyframes rota {
