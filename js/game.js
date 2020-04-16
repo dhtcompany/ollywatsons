@@ -32,10 +32,15 @@ var group = [
 ];
 var pauseModeImg = [
     './TemplateData/img/Blue.png',
+    './TemplateData/img/blue0.png',
     './TemplateData/img/Cyan.png',
+    './TemplateData/img/cyan0.png',
     './TemplateData/img/Green.png',
+    './TemplateData/img/green0.png',
     './TemplateData/img/Pink.png',
-    './TemplateData/img/Red.png'
+    './TemplateData/img/pink0.png',
+    './TemplateData/img/Red.png',
+    './TemplateData/img/red0.png'
 ]
 function preloadImage(src) {
     var image = new Image();
@@ -130,7 +135,7 @@ var resume = function () {
 }
 var getPauseImage = function () {
     let image = pauseModeImg[pauseClickTime % pauseModeImg.length];
-    console.log(image)
+   
     return image;
 }
 $(function () {
@@ -161,7 +166,7 @@ $(function () {
         $('#play').css('display', 'inline-block');
         isPause = true;
         $('#pause-mode').css('display', 'block');
-        pauseClickTime++;
+      
         $("#pause-mode-img").attr('src', getPauseImage());
     });
     $('#play').click(function () {
