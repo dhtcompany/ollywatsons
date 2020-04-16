@@ -31,7 +31,7 @@ var group = [
     ['./TemplateData/img/red1.png', './TemplateData/img/red3.png'],
 ];
 var pauseModeImg = [
-    './TemplateData/img/blue.png',
+    './TemplateData/img/Blue.png',
     './TemplateData/img/Cyan.png',
     './TemplateData/img/Green.png',
     './TemplateData/img/Pink.png',
