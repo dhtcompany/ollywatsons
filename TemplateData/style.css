@@ -252,13 +252,24 @@ figure, body, p, h1, h2, h3, h4, h5, h6, * {
   transform: rotateY(180deg);
 }
 
+.body-primary {
+    background: #bc1f89;
+}
+
 .page-container {
     width: 100%;
     max-width: 440px;
-    height: 100vh;
+    min-height: calc(100vh - 100px);
+    height: calc(100vh - 100px);
     max-height: 812px;
     margin: 0 auto;
 
+}
+
+.body-blur {
+    background-image: url('img/submit.png');
+    background-size: 100vw 100vh;
+    background-repeat: no-repeat;
 }
 
 .page-home .page-container {
@@ -485,7 +496,8 @@ figure, body, p, h1, h2, h3, h4, h5, h6, * {
     left: 0;
     background: #e8edff;
     border: 0;
-}
+    overflow: hidden;
+    }
 
 .pause-inner {
     display: block;
@@ -498,6 +510,10 @@ figure, body, p, h1, h2, h3, h4, h5, h6, * {
 .pause-block img {
     width: auto;
     height: 100%;
+}
+
+.body-game {
+    background: #e8edff;
 }
 
 .btn-resume {
@@ -517,11 +533,6 @@ figure, body, p, h1, h2, h3, h4, h5, h6, * {
 
 .text-line-one {
     white-space: nowrap;
-}
-
-.page-submit .page-container {
-    background-image: url('img/submit.png');
-    background-size: cover;
 }
 
 input:focus {
@@ -648,7 +659,7 @@ a {
 
 .page-header {
     background-image: url('header.png');
-    background-size: auto;
+    background-size: 450px 150px;
     background-position: center;
     background-repeat: no-repeat;
 }
