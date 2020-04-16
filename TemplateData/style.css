@@ -28,6 +28,14 @@ body {
     background: #000;
 }
 
+button {
+    font-family: 'Montserrat', sans-serif;
+}
+
+button:focus {
+    outline: none;
+}
+
 .sub-heading {
     font-size: 32px;
     font-weight: 500;
@@ -50,7 +58,7 @@ body {
 }
 
 .primary-color {
-    color: #bc1f89;
+    color: #bc1f89 !important;
 }
 
 .flex-center {
@@ -88,7 +96,7 @@ body {
     position: relative;
 }
 
-figure, body, p, h1, h2, h3, h4, h5, h6 {
+figure, body, p, h1, h2, h3, h4, h5, h6, * {
     margin: 0;
     padding: 0;
 }
@@ -200,7 +208,7 @@ figure, body, p, h1, h2, h3, h4, h5, h6 {
   transform-style: preserve-3d;
 }
 
- .flip-box.flip-active .flip-box-inner {
+.flip-box.flip-active .flip-box-inner {
   transform: rotateY(180deg);
 }
 
@@ -219,4 +227,50 @@ figure, body, p, h1, h2, h3, h4, h5, h6 {
 
 .flip-box-front {
   transform: rotateY(180deg);
+}
+
+.page-container {
+    width: 100%;
+    max-width: 440px;
+    height: 100vh;
+    max-height: 812px;
+    margin: 0 auto;
+
+}
+
+.page-home .page-container {
+    background-image: linear-gradient(to bottom, #c925a0, #bc1f89);
+}
+
+.home-content {
+    height: 100%;
+    flex-direction: column;
+}
+
+.mb-50 {
+    margin-bottom: 50px;
+}
+
+.mb-15 {
+    margin-bottom: 15px !important;
+}
+
+.home-btn {
+    width: calc(100vw - 100px);
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px 10px;
+    color: #fff;
+    border: 1px solid #fff;
+    text-transform: uppercase;
+    background: transparent;
+    font-size: 19px;
+    font-weight: 600;
+    border-radius: 30px;
+    letter-spacing: 1px;
+}
+
+.home-btn.primary-color {
+    background: #fff;
+
 }
