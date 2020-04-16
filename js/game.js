@@ -108,10 +108,16 @@ var init = function () {
     startGame();
 }
 var pair = function (pickedCards) {
+    console.log(pickedCards)
     group.forEach(function (e) {
-        if (e.includes(pickedCards[0]) && e.includes(pickedCards[1])) {
+        if (e.includes(pickedCards[0].url) && e.includes(pickedCards[1].url)) {
             console.log('paired', true);
             successCount++;
+            setTimeout(function () {
+                $('#card' + pickedCards[0].index).addClass('locked')
+                $('#card' + pickedCards[1].index).addClass('locked')
+            }, 900)
+
             $('#successCount').text(successCount);
         }
     })
@@ -125,12 +131,12 @@ var resume = function () {
 $(function () {
     init();
     $('.card').click(function () {
-        if (pickedCards.length >= 2 || $(this).hasClass("flip-active")) {
+        if (pickedCards.length >= 2 || $(this).hasClass("flip-active") || $(this).hasClass("locked")) {
             return;
         } else {
             var index = $(this).attr('index');
             var frontUrl = $('#front' + index).attr('src');
-            pickedCards.push(frontUrl);
+            pickedCards.push({ url: frontUrl, index: index });
             $(this).addClass('flip-active');
 
         }
