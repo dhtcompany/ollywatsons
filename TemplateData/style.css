@@ -439,3 +439,13 @@ figure, body, p, h1, h2, h3, h4, h5, h6, * {
     opacity: 0;
   }
 }
+
+.btn-resume {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #9196a8;
+    border: 0;
+}
