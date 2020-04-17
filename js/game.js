@@ -49,7 +49,7 @@ var countDownTime = function () {
         if (remainingTime <= 0) {
             clearInterval(interVal);
             if (successCount == 0) {
-                alert('oh no')
+                $('#modal-fail').css('display','block')
             } else {
                 window.location.pathname = './submit.html'
 
