@@ -272,6 +272,13 @@ figure, body, p, h1, h2, h3, h4, h5, h6, * {
     background-repeat: no-repeat;
 }
 
+@media screen and (min-width: 768px) {
+    .body-blur {
+        background-image: none;
+        background: #9096aa;
+    }
+}
+
 .page-home .page-container {
     background-image: linear-gradient(to bottom, #c925a0, #bc1f89);
 }
@@ -715,4 +722,36 @@ a {
     color: #F49AC1;
     transform: translateY(-50%);
     background: #fcf6fc;
+}
+
+.page-no-pair {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #9096aa;
+    z-index: 999;
+}
+
+.page-no-pair .how-content {
+    background: #fff;
+}
+
+.page-no-pair .page-container {
+    max-width: 320px;
+}
+
+.page-no-pair .page-header {
+    background-color: #ae3286;
+}
+
+.page-no-pair .header-container {
+    padding-top: 0;
+}
+
+.pair-content {
+    padding: 40px 10px;
+    background: #ae3286;
+    color: #fff;
 }
