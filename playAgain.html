@@ -55,14 +55,8 @@
 </body>
 <script>
     $(function () {
-        soundPlayAgain = new Howl({
-            src: ['./TemplateData/sounds/play-again.mp3']
-        })
         $("#playAgainBtn").click(function () {
-            soundPlayAgain.play();
-            setTimeout(() => {
-                window.location.pathname = 'game.html'
-            }, 1000);
+            window.location.pathname = 'game.html'
 
         });
     })

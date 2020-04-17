@@ -1,5 +1,5 @@
 var listObjShowup = [], totalTime = 60, remainingTime, pickedCards = [], successCount = 0, isPause = false, pauseClickTime = 0;
-var soundStart, soundEnd, soundFlip, soundPaired;
+var soundStart, soundEnd, soundFlip, soundPaired, soundPlayAgain;
 var shuffle = function (a) {
     for (let i = a.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -49,7 +49,7 @@ var countDownTime = function () {
         if (remainingTime <= 0) {
             clearInterval(interVal);
             if (successCount == 0) {
-                $('#modal-fail').css('display','block')
+                $('#modal-fail').css('display', 'block')
             } else {
                 window.location.pathname = './submit.html'
 
@@ -72,6 +72,9 @@ var init = function () {
     soundPaired = new Howl({
         src: ['./TemplateData/sounds/paired.mp3']
     });
+    soundPlayAgain = new Howl({
+        src: ['./TemplateData/sounds/play-again.mp3']
+    })
     soundStart.once('load', function () {
         console.log('loaded')
         soundStart.play();
@@ -172,6 +175,12 @@ $(function () {
     $('#pause-mode-img').click(function () {
         pauseClickTime++;
         $("#pause-mode-img").attr('src', getPauseImage());
+    })
+    $('#play-again-btn').click(function () {
+        soundPlayAgain.play();
+        setTimeout(() => {
+            window.location.pathname='./game.html'
+        }, 1000);
     })
 });
 
