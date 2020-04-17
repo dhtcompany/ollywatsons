@@ -31,16 +31,21 @@ var group = [
     ['./TemplateData/img/red1.png', './TemplateData/img/red3.png'],
 ];
 var pauseModeImg = [
-    './TemplateData/img/Blue.png',
     './TemplateData/img/blue0.png',
-    './TemplateData/img/Cyan.png',
+    './TemplateData/img/Blue.png',
+
     './TemplateData/img/cyan0.png',
+    './TemplateData/img/Cyan.png',
+
     './TemplateData/img/Green.png',
     './TemplateData/img/green0.png',
+
     './TemplateData/img/Pink.png',
     './TemplateData/img/pink0.png',
+
     './TemplateData/img/Red.png',
     './TemplateData/img/red0.png'
+
 ]
 function preloadImage(src) {
     var image = new Image();
@@ -84,7 +89,13 @@ var startGame = function () {
     }, 5000);
 }
 var closeAllCard = function () {
-    $('.card').removeClass('flip-active');
+    $('.card').each(function () {
+        if ($(this).hasClass("locked")) {
+
+        } else {
+            $(this).removeClass('flip-active');
+        }
+    });
 }
 var countDownTime = function () {
     remainingTime = totalTime;
@@ -114,16 +125,18 @@ var init = function () {
 }
 var pair = function (pickedCards) {
     console.log(pickedCards)
-    group.forEach(function (e) {
+    group.forEach(function (e, index) {
         if (e.includes(pickedCards[0].url) && e.includes(pickedCards[1].url)) {
-            console.log('paired', true);
+            console.log('paired', index);
             successCount++;
-            setTimeout(function () {
-                $('#card' + pickedCards[0].index).addClass('locked')
-                $('#card' + pickedCards[1].index).addClass('locked')
-            }, 900)
-
+            $('#card' + pickedCards[0].index).addClass('locked')
+            $('#card' + pickedCards[1].index).addClass('locked')
             $('#successCount').text(successCount);
+            setTimeout(function(){
+                pause(pauseModeImg[index]);
+                pauseClickTime = index
+            },500)
+           
         }
     })
 }
@@ -133,9 +146,16 @@ var resume = function () {
     isPause = false;
     $('#pause-mode').css('display', 'none');
 }
+var pause = function (imgSrc) {
+    $('#pause').css('display', 'none');
+    $('#play').css('display', 'inline-block');
+    isPause = true;
+    $('#pause-mode').css('display', 'block');
+    $("#pause-mode-img").attr('src', imgSrc);
+}
 var getPauseImage = function () {
     let image = pauseModeImg[pauseClickTime % pauseModeImg.length];
-   
+
     return image;
 }
 $(function () {
@@ -162,12 +182,12 @@ $(function () {
 
 
     $('#pause').click(function () {
-        $(this).css('display', 'none');
-        $('#play').css('display', 'inline-block');
-        isPause = true;
-        $('#pause-mode').css('display', 'block');
-      
-        $("#pause-mode-img").attr('src', getPauseImage());
+        pause(getPauseImage());
+        // $(this).css('display', 'none');
+        // $('#play').css('display', 'inline-block');
+        // isPause = true;
+        // $('#pause-mode').css('display', 'block');
+        // $("#pause-mode-img").attr('src', getPauseImage());
     });
     $('#play').click(function () {
         resume()
