@@ -1,23 +1,47 @@
-// $(function () {
-//     $(".card").flip();
-// });
-var listObj = [
+function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+}
+var listProduct = [
     './TemplateData/img/blue1.png',
-    './TemplateData/img/blue2.png',
-    './TemplateData/img/blue3.png',
     './TemplateData/img/cyan1.png',
-    './TemplateData/img/cyan2.png',
-    './TemplateData/img/cyan3.png',
     './TemplateData/img/green1.png',
-    './TemplateData/img/green2.png',
-    './TemplateData/img/green3.png',
     './TemplateData/img/pink1.png',
-    './TemplateData/img/pink2.png',
-    './TemplateData/img/pink3.png',
     './TemplateData/img/red1.png',
-    './TemplateData/img/red2.png',
-    './TemplateData/img/red3.png'
-];
+]
+var listContent = [
+    ['./TemplateData/img/blue2.png', './TemplateData/img/blue3.png'],
+    ['./TemplateData/img/cyan2.png', './TemplateData/img/cyan3.png'],
+    ['./TemplateData/img/green2.png', './TemplateData/img/green3.png'],
+    ['./TemplateData/img/pink2.png', './TemplateData/img/pink3.png'],
+    ['./TemplateData/img/red2.png', './TemplateData/img/red3.png']
+]
+var listObj = [];
+for (let i = 0; i < listProduct.length; i++) {
+    listObj.push(listProduct[i]);
+    var contents = listContent[i];
+    listObj.push(contents[Math.floor(Math.random() * 2)])
+}
+var lastProductIndex = getRandomInt(5);
+listObj.push(listProduct[lastProductIndex]);
+var lastContents = listContent[lastProductIndex];
+listObj.push(lastContents[Math.floor(Math.random() * 2)])
+// var listObj = [
+//     './TemplateData/img/blue1.png',
+//     './TemplateData/img/blue2.png',
+//     './TemplateData/img/blue3.png',
+//     './TemplateData/img/cyan1.png',
+//     './TemplateData/img/cyan2.png',
+//     './TemplateData/img/cyan3.png',
+//     './TemplateData/img/green1.png',
+//     './TemplateData/img/green2.png',
+//     './TemplateData/img/green3.png',
+//     './TemplateData/img/pink1.png',
+//     './TemplateData/img/pink2.png',
+//     './TemplateData/img/pink3.png',
+//     './TemplateData/img/red1.png',
+//     './TemplateData/img/red2.png',
+//     './TemplateData/img/red3.png'
+// ];
 var group = [
     ['./TemplateData/img/blue1.png', './TemplateData/img/blue2.png'],
     ['./TemplateData/img/blue1.png', './TemplateData/img/blue3.png'],
@@ -73,7 +97,7 @@ var shuffle = function (a) {
     return a;
 }
 var startGame = function () {
-    soundStart.play();
+
     $('.card').addClass('flip-active');
 
     setTimeout(() => {
@@ -112,8 +136,14 @@ var countDownTime = function () {
             soundEnd.play();
         }
         if (remainingTime <= 0) {
-            window.location.pathname = './submit.html'
             clearInterval(interVal);
+            if (successCount == 0) {
+                alert('oh no')
+            } else {
+                window.location.pathname = './submit.html'
+
+            }
+
         }
     }, 1000)
 }
@@ -130,6 +160,10 @@ var init = function () {
     });
     soundPaired = new Howl({
         src: ['./TemplateData/sounds/paired.mp3']
+    });
+    soundStart.once('load', function () {
+        console.log('loaded')
+        soundStart.play();
     });
 
 
@@ -157,7 +191,11 @@ var pair = function (pickedCards) {
                 pause(pauseModeImg[index]);
                 pauseClickTime = index
             }, 500)
-
+            if (successCount === 6) {
+                setTimeout(() => {
+                    window.location.pathname = './submit.html';
+                }, 2000);
+            }
         }
     })
 }
