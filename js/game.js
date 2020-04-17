@@ -64,6 +64,7 @@ listObj.forEach(function (e) {
 
 
 var listObjShowup = [], totalTime = 60, remainingTime, pickedCards = [], successCount = 0, isPause = false, pauseClickTime = 0;
+var soundStart, soundEnd, soundFlip, soundPaired;
 var shuffle = function (a) {
     for (let i = a.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -72,8 +73,8 @@ var shuffle = function (a) {
     return a;
 }
 var startGame = function () {
+    soundStart.play();
     $('.card').addClass('flip-active');
-
 
     setTimeout(() => {
         closeAllCard();
@@ -107,6 +108,9 @@ var countDownTime = function () {
         var percentTime = remainingTime / totalTime * 100 + '%';
         $('#percentTime').css('width', percentTime)
         $('#time').html(remainingTime)
+        if (remainingTime == 1) {
+            soundEnd.play();
+        }
         if (remainingTime <= 0) {
             window.location.pathname = './submit.html'
             clearInterval(interVal);
@@ -114,6 +118,21 @@ var countDownTime = function () {
     }, 1000)
 }
 var init = function () {
+    /** init sounds**/
+    soundStart = new Howl({
+        src: ['./TemplateData/sounds/start.mp3']
+    })
+    soundEnd = new Howl({
+        src: ['./TemplateData/sounds/end.mp3']
+    });
+    soundFlip = new Howl({
+        src: ['./TemplateData/sounds/flip.mp3']
+    });
+    soundPaired = new Howl({
+        src: ['./TemplateData/sounds/paired.mp3']
+    });
+
+
     listObjShowup = shuffle(listObj).slice(0, 12);
     /* bind img to card*/
     for (var i = 0; i < listObjShowup.length; i++) {
@@ -122,6 +141,7 @@ var init = function () {
     }
     /* init logic */
     startGame();
+
 }
 var pair = function (pickedCards) {
     console.log(pickedCards)
@@ -132,11 +152,12 @@ var pair = function (pickedCards) {
             $('#card' + pickedCards[0].index).addClass('locked')
             $('#card' + pickedCards[1].index).addClass('locked')
             $('#successCount').text(successCount);
-            setTimeout(function(){
+            soundPaired.play();
+            setTimeout(function () {
                 pause(pauseModeImg[index]);
                 pauseClickTime = index
-            },500)
-           
+            }, 500)
+
         }
     })
 }
@@ -150,8 +171,11 @@ var pause = function (imgSrc) {
     $('#pause').css('display', 'none');
     $('#play').css('display', 'inline-block');
     isPause = true;
-    $('#pause-mode').css('display', 'block');
-    $("#pause-mode-img").attr('src', imgSrc);
+    if (imgSrc) {
+        $('#pause-mode').css('display', 'block');
+        $("#pause-mode-img").attr('src', imgSrc);
+    }
+
 }
 var getPauseImage = function () {
     let image = pauseModeImg[pauseClickTime % pauseModeImg.length];
@@ -159,15 +183,18 @@ var getPauseImage = function () {
     return image;
 }
 $(function () {
+
+
     init();
     $('.card').click(function () {
-        if (pickedCards.length >= 2 || $(this).hasClass("flip-active") || $(this).hasClass("locked")) {
+        if (pickedCards.length >= 2 || $(this).hasClass("flip-active") || $(this).hasClass("locked") || isPause) {
             return;
         } else {
             var index = $(this).attr('index');
             var frontUrl = $('#front' + index).attr('src');
             pickedCards.push({ url: frontUrl, index: index });
             $(this).addClass('flip-active');
+            soundFlip.play();
 
         }
         /*pair*/
@@ -182,7 +209,7 @@ $(function () {
 
 
     $('#pause').click(function () {
-        pause(getPauseImage());
+        pause(null);
         // $(this).css('display', 'none');
         // $('#play').css('display', 'inline-block');
         // isPause = true;
