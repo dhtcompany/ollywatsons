@@ -1,23 +1,47 @@
-// $(function () {
-//     $(".card").flip();
-// });
-var listObj = [
+function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+}
+var listProduct = [
     './TemplateData/img/blue1.png',
-    './TemplateData/img/blue2.png',
-    './TemplateData/img/blue3.png',
     './TemplateData/img/cyan1.png',
-    './TemplateData/img/cyan2.png',
-    './TemplateData/img/cyan3.png',
     './TemplateData/img/green1.png',
-    './TemplateData/img/green2.png',
-    './TemplateData/img/green3.png',
     './TemplateData/img/pink1.png',
-    './TemplateData/img/pink2.png',
-    './TemplateData/img/pink3.png',
     './TemplateData/img/red1.png',
-    './TemplateData/img/red2.png',
-    './TemplateData/img/red3.png'
-];
+]
+var listContent = [
+    ['./TemplateData/img/blue2.png', './TemplateData/img/blue3.png'],
+    ['./TemplateData/img/cyan2.png', './TemplateData/img/cyan3.png'],
+    ['./TemplateData/img/green2.png', './TemplateData/img/green3.png'],
+    ['./TemplateData/img/pink2.png', './TemplateData/img/pink3.png'],
+    ['./TemplateData/img/red2.png', './TemplateData/img/red3.png']
+]
+var listObj = [];
+for (let i = 0; i < listProduct.length; i++) {
+    listObj.push(listProduct[i]);
+    var contents = listContent[i];
+    listObj.push(contents[Math.floor(Math.random() * 2)])
+}
+var lastProductIndex = getRandomInt(5);
+listObj.push(listProduct[lastProductIndex]);
+var lastContents = listContent[lastProductIndex];
+listObj.push(lastContents[Math.floor(Math.random() * 2)])
+// var listObj = [
+//     './TemplateData/img/blue1.png',
+//     './TemplateData/img/blue2.png',
+//     './TemplateData/img/blue3.png',
+//     './TemplateData/img/cyan1.png',
+//     './TemplateData/img/cyan2.png',
+//     './TemplateData/img/cyan3.png',
+//     './TemplateData/img/green1.png',
+//     './TemplateData/img/green2.png',
+//     './TemplateData/img/green3.png',
+//     './TemplateData/img/pink1.png',
+//     './TemplateData/img/pink2.png',
+//     './TemplateData/img/pink3.png',
+//     './TemplateData/img/red1.png',
+//     './TemplateData/img/red2.png',
+//     './TemplateData/img/red3.png'
+// ];
 var group = [
     ['./TemplateData/img/blue1.png', './TemplateData/img/blue2.png'],
     ['./TemplateData/img/blue1.png', './TemplateData/img/blue3.png'],
@@ -31,16 +55,21 @@ var group = [
     ['./TemplateData/img/red1.png', './TemplateData/img/red3.png'],
 ];
 var pauseModeImg = [
-    './TemplateData/img/Blue.png',
     './TemplateData/img/blue0.png',
-    './TemplateData/img/Cyan.png',
+    './TemplateData/img/Blue.png',
+
     './TemplateData/img/cyan0.png',
+    './TemplateData/img/Cyan.png',
+
     './TemplateData/img/Green.png',
     './TemplateData/img/green0.png',
+
     './TemplateData/img/Pink.png',
     './TemplateData/img/pink0.png',
+
     './TemplateData/img/Red.png',
     './TemplateData/img/red0.png'
+
 ]
 function preloadImage(src) {
     var image = new Image();
@@ -59,6 +88,7 @@ listObj.forEach(function (e) {
 
 
 var listObjShowup = [], totalTime = 60, remainingTime, pickedCards = [], successCount = 0, isPause = false, pauseClickTime = 0;
+var soundStart, soundEnd, soundFlip, soundPaired;
 var shuffle = function (a) {
     for (let i = a.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -67,8 +97,8 @@ var shuffle = function (a) {
     return a;
 }
 var startGame = function () {
-    $('.card').addClass('flip-active');
 
+    $('.card').addClass('flip-active');
 
     setTimeout(() => {
         closeAllCard();
@@ -84,7 +114,13 @@ var startGame = function () {
     }, 5000);
 }
 var closeAllCard = function () {
-    $('.card').removeClass('flip-active');
+    $('.card').each(function () {
+        if ($(this).hasClass("locked")) {
+
+        } else {
+            $(this).removeClass('flip-active');
+        }
+    });
 }
 var countDownTime = function () {
     remainingTime = totalTime;
@@ -96,13 +132,41 @@ var countDownTime = function () {
         var percentTime = remainingTime / totalTime * 100 + '%';
         $('#percentTime').css('width', percentTime)
         $('#time').html(remainingTime)
+        if (remainingTime == 1) {
+            soundEnd.play();
+        }
         if (remainingTime <= 0) {
-            window.location.pathname = './submit.html'
             clearInterval(interVal);
+            if (successCount == 0) {
+                alert('oh no')
+            } else {
+                window.location.pathname = './submit.html'
+
+            }
+
         }
     }, 1000)
 }
 var init = function () {
+    /** init sounds**/
+    soundStart = new Howl({
+        src: ['./TemplateData/sounds/start.mp3']
+    })
+    soundEnd = new Howl({
+        src: ['./TemplateData/sounds/end.mp3']
+    });
+    soundFlip = new Howl({
+        src: ['./TemplateData/sounds/flip.mp3']
+    });
+    soundPaired = new Howl({
+        src: ['./TemplateData/sounds/paired.mp3']
+    });
+    soundStart.once('load', function () {
+        console.log('loaded')
+        soundStart.play();
+    });
+
+
     listObjShowup = shuffle(listObj).slice(0, 12);
     /* bind img to card*/
     for (var i = 0; i < listObjShowup.length; i++) {
@@ -111,19 +175,27 @@ var init = function () {
     }
     /* init logic */
     startGame();
+
 }
 var pair = function (pickedCards) {
     console.log(pickedCards)
-    group.forEach(function (e) {
+    group.forEach(function (e, index) {
         if (e.includes(pickedCards[0].url) && e.includes(pickedCards[1].url)) {
-            console.log('paired', true);
+            console.log('paired', index);
             successCount++;
-            setTimeout(function () {
-                $('#card' + pickedCards[0].index).addClass('locked')
-                $('#card' + pickedCards[1].index).addClass('locked')
-            }, 900)
-
+            $('#card' + pickedCards[0].index).addClass('locked')
+            $('#card' + pickedCards[1].index).addClass('locked')
             $('#successCount').text(successCount);
+            soundPaired.play();
+            setTimeout(function () {
+                pause(pauseModeImg[index]);
+                pauseClickTime = index
+            }, 500)
+            if (successCount === 6) {
+                setTimeout(() => {
+                    window.location.pathname = './submit.html';
+                }, 2000);
+            }
         }
     })
 }
@@ -133,21 +205,34 @@ var resume = function () {
     isPause = false;
     $('#pause-mode').css('display', 'none');
 }
+var pause = function (imgSrc) {
+    $('#pause').css('display', 'none');
+    $('#play').css('display', 'inline-block');
+    isPause = true;
+    if (imgSrc) {
+        $('#pause-mode').css('display', 'block');
+        $("#pause-mode-img").attr('src', imgSrc);
+    }
+
+}
 var getPauseImage = function () {
     let image = pauseModeImg[pauseClickTime % pauseModeImg.length];
-   
+
     return image;
 }
 $(function () {
+
+
     init();
     $('.card').click(function () {
-        if (pickedCards.length >= 2 || $(this).hasClass("flip-active") || $(this).hasClass("locked")) {
+        if (pickedCards.length >= 2 || $(this).hasClass("flip-active") || $(this).hasClass("locked") || isPause) {
             return;
         } else {
             var index = $(this).attr('index');
             var frontUrl = $('#front' + index).attr('src');
             pickedCards.push({ url: frontUrl, index: index });
             $(this).addClass('flip-active');
+            soundFlip.play();
 
         }
         /*pair*/
@@ -162,12 +247,12 @@ $(function () {
 
 
     $('#pause').click(function () {
-        $(this).css('display', 'none');
-        $('#play').css('display', 'inline-block');
-        isPause = true;
-        $('#pause-mode').css('display', 'block');
-      
-        $("#pause-mode-img").attr('src', getPauseImage());
+        pause(null);
+        // $(this).css('display', 'none');
+        // $('#play').css('display', 'inline-block');
+        // isPause = true;
+        // $('#pause-mode').css('display', 'block');
+        // $("#pause-mode-img").attr('src', getPauseImage());
     });
     $('#play').click(function () {
         resume()
