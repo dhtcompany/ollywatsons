@@ -149,11 +149,16 @@ figure, p, h1, h2, h3, h4, h5, h6, * {
     text-align: center;
 }
 
+.countTimer {
+    padding: 0 10px;
+}
+
 .countdown {
     width: 100%;
     height: 5px;
     margin-top: 5px;
     background: #bc1f89;
+    border-radius: 5px;
 }
 
 .btn-transparent {
@@ -163,17 +168,17 @@ figure, p, h1, h2, h3, h4, h5, h6, * {
 }
 
 .btn-pause {
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
     background-image: url('pause.png');
     background-position: center;
     background-size: cover;
 }
 
 .btn-start {
-    width: 45px;
-    height: 45px;
-    background-image: url('START.png');
+    width: 40px;
+    height: 40px;
+    background-image: url('start.png');
     background-position: center;
     background-size: cover;
 }
@@ -679,6 +684,7 @@ a {
 }
 
 .page-header {
+    height: 115px;
     background-image: url('header.png');
     background-size: 450px 150px;
     background-position: 50% 80%;
@@ -726,6 +732,10 @@ a {
     max-width: 35px;
 }
 
+.col-two p {
+    font-weight: 600;
+}
+
 .col-left {
     border-right: 1px solid #F49AC1;
     position: relative;
@@ -739,7 +749,7 @@ a {
     color: #F49AC1;
     transform: translateY(-50%);
     background: #fcf6fc;
-    font-size: 12px;
+    font-size: 10px;
 }
 
 .page-no-pair {
