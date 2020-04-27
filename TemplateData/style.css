@@ -140,7 +140,7 @@ figure, p, h1, h2, h3, h4, h5, h6, * {
 }
 
 .header-container {
-    padding: 10px 5px;
+    padding: 5px;
 }
 
 .header-col {
@@ -702,7 +702,7 @@ a {
     height: 115px;
     background-image: url('header.png');
     background-size: 450px 150px;
-    background-position: 50% 80%;
+    background-position: 50% 100%;
     background-repeat: no-repeat;
 }
 
