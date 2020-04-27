@@ -103,7 +103,7 @@ button:focus {
 }
 
 .page-inner {
-    padding-top: 10px;
+    padding-top: 2px;
     position: relative;
 }
 
@@ -202,7 +202,7 @@ figure, p, h1, h2, h3, h4, h5, h6, * {
 }
 
 .item-image {
-    width: 33.33%;
+    width: 30%;
     margin: 0;
 }
 
@@ -539,10 +539,10 @@ figure, p, h1, h2, h3, h4, h5, h6, * {
 
 .pause-inner {
     display: block;
-    width: 75vw;
+    width: 65vw;
     max-width: 297px;
     margin: 0 auto;
-    height: 100%;
+    height: 60vh;
     position: relative;
     text-align: center;
 
@@ -699,7 +699,7 @@ a {
 }
 
 .page-header {
-    height: 115px;
+    height: 110px;
     background-image: url('header.png');
     background-size: 450px 150px;
     background-position: 50% 100%;
@@ -794,7 +794,7 @@ a {
 }
 
 .pair-content {
-    padding: 40px 10px;
+    padding: 10px;
     background: #ae3286;
     color: #fff;
 }
